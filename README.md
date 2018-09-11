@@ -33,29 +33,29 @@ as arguments.
 
 <procedure>(seq MATCHER1 MATCHER2) => MATCHER</procedure>
 
-{{seq}} builds a matcher that matches a sequence of patterns. 
+`seq` builds a matcher that matches a sequence of patterns. 
 
 <procedure>(bar MATCHER1 MATCHER2) => MATCHER</procedure>
 
-{{bar}} matches either of two patterns. It's analogous to patterns
-separated by {{|}} in traditional regular expressions.
+`bar` matches either of two patterns. It's analogous to patterns
+separated by `|` in traditional regular expressions.
 
 <procedure>(star MATCHER) => MATCHER</procedure>
 
-{{star}} is an implementation of the Kleene closure. It is analogous
-to {{*}} in traditional regular expressions.
+`star` is an implementation of the Kleene closure. It is analogous
+to `*` in traditional regular expressions.
 
 ### Token procedure
 
 <procedure>(tok <Input>) => (LAMBDA TOKEN PROC) => MATCHER</procedure>
 
-Procedure {{tok}} builds pattern matchers based on character
+Procedure `tok` builds pattern matchers based on character
 comparison operations. It is intended for matching input sequences of
 arbitrary kinds, e.g. character lists, strings, or other kinds of
 sequences.
 
-For each stream given, {{tok}} applies a procedure to the given token
-{{TOKEN}} and an input character. If the procedure returns a true
+For each stream given, `tok` applies a procedure to the given token
+`TOKEN` and an input character. If the procedure returns a true
 value, that value is prepended to the list of consumed elements, and
 the input character is removed from the list of input elements.
 
@@ -70,11 +70,11 @@ Matches any of a SRFI-14 set of characters.
 
 <procedure>(range CHAR CHAR) => MATCHER</procedure>
 
-Matches a range of characters. Analogous to character class {{[]}}.
+Matches a range of characters. Analogous to character class `[]`.
 
 <procedure>(lit STRING) => MATCHER</procedure>
 
-Matches a literal string {{s}}.
+Matches a literal string `s`.
 
 ### Convenience procedures
 
@@ -89,7 +89,7 @@ otherwise.
 
 <procedure>(lst MATCHER-LIST) => MATCHER</procedure>
 
-Constructs a matcher for the sequence of matchers in {{MATCHER-LIST}}.
+Constructs a matcher for the sequence of matchers in `MATCHER-LIST`.
 
 <procedure>(pass) => MATCHER</procedure>
 
@@ -97,16 +97,16 @@ This matcher returns without consuming any input.
 
 <procedure>(pos MATCHER) => MATCHER</procedure>
 
-Positive closure. Analogous to {{+}}.
+Positive closure. Analogous to `+`.
 
 <procedure>(opt MATCHER) => MATCHER</procedure>
 
-Optional pattern. Analogous to {{?}}.
+Optional pattern. Analogous to `?`.
 
 <procedure>(bind F P) => MATCHER</procedure>
 
-Given a rule {{P}} and function {{F}}, returns a matcher that first
-applies {{P}} to the input stream, then applies {{F}} to the returned
+Given a rule `P` and function `F`, returns a matcher that first
+applies `P` to the input stream, then applies `F` to the returned
 list of consumed tokens, and returns the result and the remainder of
 the input stream.
 
@@ -115,14 +115,14 @@ empty.
 
 <procedure>(bind* F P) => MATCHER</procedure>
 
-The same as {{bind}}, but will signal success if the input stream is
+The same as `bind`, but will signal success if the input stream is
 empty.
 
 <procedure>(rebind F G P) => MATCHER</procedure>
 
-Given a rule {{P}} and procedures {{F}} and {{G}}, returns a matcher
-that first applies {{F}} to the input stream, then applies {{P}} to
-the resulting stream, then applies {{G}} to the resulting list of
+Given a rule `P` and procedures `F` and `G`, returns a matcher
+that first applies `F` to the input stream, then applies `P` to
+the resulting stream, then applies `G` to the resulting list of
 consumed elements and returns the result along with the remainder of
 the input stream.
 
@@ -131,21 +131,21 @@ empty.
 
 <procedure>(rebind* F G P) => MATCHER</procedure>
 
-The same as {{rebind}}, but will signal success if the input stream is
+The same as `rebind`, but will signal success if the input stream is
 empty.
 
 <procedure>(drop P) => MATCHER</procedure>
 
-Given a rule {{P}}, returns a matcher that always returns an empty
-list of consumed tokens when {{P}} succeeds.
+Given a rule `P`, returns a matcher that always returns an empty
+list of consumed tokens when `P` succeeds.
 
 ### Lexer procedure
 
 <procedure>(lex MATCHER ERROR STRING) => CHAR-LIST</procedure>
 
-{{lex}} takes a pattern and a string, turns the string into a list of
+`lex` takes a pattern and a string, turns the string into a list of
 streams (containing one stream), applies the pattern, and returns the
-first possible match. Argument {{ERROR}} is a single-argument
+first possible match. Argument `ERROR` is a single-argument
 procedure called when the pattern does not match anything.
 
 ## Examples
@@ -183,7 +183,7 @@ procedure called when the pattern does not match anything.
 * 5.2 Ensure test script returns proper exit status
 * 5.0-5.1 Added error continuation to the matcher interface and eliminated multiple stream matching
 * 4.0 Implemented typeclass interface for abstracting over input sequences
-* 3.8 Added procedure {{star*}} (greedy Kleene closure matching)
+* 3.8 Added procedure `star*` (greedy Kleene closure matching)
 * 3.6 Added procedure redo [thanks to Christian Kellermann]
 * 3.5 Bug fixes in bind [reported by Peter Bex]
 * 3.3 Bug fixes in stream comparison
@@ -205,7 +205,7 @@ procedure called when the pattern does not match anything.
 
 ## License
 
-Based on the [[http://www.standarddeviance.com/projects/combinators/combinators.html|SML lexer generator by Thant Tessman]].
+Based on the [SML lexer generator](http://www.standarddeviance.com/projects/combinators/combinators.html) by Thant Tessman.
 >
 >  Copyright 2009-2018 Ivan Raikov.
 > 
