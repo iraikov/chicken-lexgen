@@ -158,12 +158,12 @@ procedure called when the pattern does not match anything.
 ;;  "-"?(([0-9]+(\\.[0-9]+)?)|(\\.[0-9]+))([eE][+-]?[0-9]+)? 
 
 (define numpat
-  (let* ((digit        (char-list/range #\0 #\9))
+  (let* ((digit        (range #\0 #\9))
 	 (digits       (pos digit))
-	 (fraction     (seq (char-list/char #\.) digits))
+	 (fraction     (seq (char #\.) digits))
 	 (significand  (bar (seq digits (opt fraction)) fraction))
-	 (exp          (seq (char-list/set "eE") (seq (opt (char-list/set "+-")) digits)))
-	 (sign         (opt (char-list/char #\-))))
+	 (exp          (seq (set "eE") (seq (opt (set "+-")) digits)))
+	 (sign         (opt (char #\-))))
     (seq sign (seq significand (opt exp)))))
  
  (define (err s)
