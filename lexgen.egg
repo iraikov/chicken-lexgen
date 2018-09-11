@@ -1,0 +1,11 @@
+;; -*- Hen -*-
+
+((synopsis "Lexer combinators")
+ (license "GPL-3")
+ (category parsing)
+ (dependencies srfi-1 utf8 yasos)
+ (test-dependencies test srfi-14)
+ (author "Ivan Raikov")
+ (components (extension lexgen))
+ )
+
