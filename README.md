@@ -173,7 +173,7 @@ procedure called when the pattern does not match anything.
  (lex numpat err "-123.45e-6")
 ```
 
-### A pattern to match floating point numbers and construct a user-define structure
+### A pattern to match floating point numbers and construct user-defined lexer state
 
 
 ```scheme
