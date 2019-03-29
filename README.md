@@ -173,6 +173,52 @@ procedure called when the pattern does not match anything.
  (lex numpat err "-123.45e-6")
 ```
 
+### A pattern to match floating point numbers and construct a user-define structure
+
+
+```scheme
+
+(define (collect cs) 
+  (let loop ((cs cs) (ax (list)))
+    (cond ((null? cs)         `(,(list->string ax)))
+	  ((atom? (car cs))   (loop (cdr cs) (cons (car cs) ax)))
+	  (else               (cons (list->string ax) cs)))))
+
+(define (make-exp x)
+  (or (and (pair? x) 
+	   (let ((x1 (collect x)))
+	     (list `(exp . ,x1)))) x))
+
+(define (make-significand x)
+  (or (and (pair? x) 
+	   (let ((x1 (collect x)))
+	     (cons `(significand ,(car x1)) (cdr x1)))) x))
+
+(define (make-sign x)
+  (or (and (pair? x) 
+	   (let ((x1 (collect x)))
+	     (cons `(sign ,(car x1)) (cdr x1)))) x))
+
+(define (check s) (lambda (s1) (if (null? s1) (err s) s1)))
+
+(define bnumpat 
+  (let* ((digit        (range #\0 #\9))
+	 (digits       (star digit))
+	 (fraction     (seq (char #\.) digits))
+	 (significand  (bar (seq digits (opt fraction)) fraction))
+	 (exp          (seq (set "eE") (seq (opt (set "+-")) digits)))
+	 (sign         (opt (char #\-)) )
+	 (pat          (seq (bind make-sign sign) 
+			    (seq (bind make-significand significand)
+				 (bind make-exp (opt exp))))))
+    pat))
+
+(define (num-parser s) (car (lex bnumpat err s)))
+
+(num-parser "-123.45e-6")
+
+```
+
 ## Version History
 
 * 8.9 Ported to CHICKEN 5 and yasos collections interface
