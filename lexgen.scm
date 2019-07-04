@@ -3,7 +3,7 @@
 ;;
 ;;  Based on the SML lexer generator by Thant Tessman.
 ;;
-;;  Copyright 2009-2018 Ivan Raikov.
+;;  Copyright 2009-2019 Ivan Raikov.
 ;;
 ;;
 ;; This program is free software: you can redistribute it and/or
@@ -31,7 +31,7 @@
   (import scheme (chicken base)
           (only srfi-1 first second filter-map fold concatenate every lset<= )
           yasos yasos-collections
-          utf8 utf8-srfi-14)
+          utf8 utf8-srfi-14 srfi-127)
 
 
 ;;
