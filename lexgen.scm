@@ -30,7 +30,6 @@
 
   (import scheme (chicken base)
           (only srfi-1 first second filter-map fold concatenate every lset<= )
-          yasos yasos-collections
           utf8 utf8-srfi-14 srfi-127)
 
 

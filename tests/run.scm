@@ -2,7 +2,7 @@
 (require-extension scheme (chicken base)
                    (chicken format)
                    srfi-1 srfi-14
-                   test lexgen yasos yasos-collections)
+                   test lexgen)
 
 (define a-pat (tok #\a (try char=?)))
 (define b-pat (tok #\b (try char=?)))
