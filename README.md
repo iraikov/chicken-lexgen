@@ -31,7 +31,7 @@ as arguments.
 
 ### Basic procedures
 
-<procedure>(seq MATCHER1 MATCHER2) => MATCHER</procedure>
+    <procedure>(seq MATCHER1 MATCHER2) => MATCHER</procedure>
 
 `seq` builds a matcher that matches a sequence of patterns. 
 
@@ -47,17 +47,16 @@ to `*` in traditional regular expressions.
 
 ### Token procedure
 
-<procedure>(tok <Input>) => (LAMBDA TOKEN PROC) => MATCHER</procedure>
+<procedure>(tok TOKEN PROC) => MATCHER</procedure>
 
-Procedure `tok` builds pattern matchers based on character
-comparison operations. It is intended for matching input sequences of
-arbitrary kinds, e.g. character lists, strings, or other kinds of
-sequences.
+Procedure `tok` builds pattern matchers based on character comparison
+operations. It is intended for matching input sequences that are
+SRFI-127 lazy streams.
 
-For each stream given, `tok` applies a procedure to the given token
-`TOKEN` and an input character. If the procedure returns a true
+For each stream given, `tok` applies the procedure `PROC` to the given
+token `TOKEN` and an input character. If the procedure returns a true
 value, that value is prepended to the list of consumed elements, and
-the input character is removed from the list of input elements.
+the input character is removed from the stream of input elements.
 
 
 <procedure>(char CHAR) => MATCHER</procedure>
@@ -221,7 +220,8 @@ procedure called when the pattern does not match anything.
 
 ## Version History
 
-* 8.9 Ported to CHICKEN 5 and yasos collections interface
+* 8.2 Removed yasos dependency [thanks to Noeal Cragg]
+* 8.1 Ported to CHICKEN 5 and yasos collections interface
 * 7.1 Bug fix in bind*  [thanks to Peter Bex]
 * 7.0 Added bind* and rebind* variants of bind and rebind [thanks to Peter Bex]
 * 6.1-6.2 Corrected behavior of the tok combinator so that the failure continuation is invoked upon end-of-input [thanks to Chris Salch]
