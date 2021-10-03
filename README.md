@@ -220,7 +220,7 @@ procedure called when the pattern does not match anything.
 
 ## Version History
 
-* 8.2 Removed yasos dependency [thanks to Noeal Cragg]
+* 8.2 Removed yasos dependency [thanks to Noel Cragg]
 * 8.1 Ported to CHICKEN 5 and yasos collections interface
 * 7.1 Bug fix in bind*  [thanks to Peter Bex]
 * 7.0 Added bind* and rebind* variants of bind and rebind [thanks to Peter Bex]
@@ -253,7 +253,7 @@ procedure called when the pattern does not match anything.
 
 Based on the [SML lexer generator](http://www.standarddeviance.com/projects/combinators/combinators.html) by Thant Tessman.
 >
->  Copyright 2009-2018 Ivan Raikov.
+>  Copyright 2009-2021 Ivan Raikov.
 > 
 > 
 >  This program is free software: you can redistribute it and/or modify
